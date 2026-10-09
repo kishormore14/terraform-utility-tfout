@@ -1,25 +1,26 @@
 locals {
-  is_windows = length(regexall("^[a-zA-Z]:", path.module)) > 0 || (var.color == "never" && length(regexall("windows", lower(to-string(var.color)))) > 0)
+  # Robust cross-platform OS detection using abspath
+  is_windows = length(regexall("^[a-zA-Z]:|\\\\", abspath(path.module))) > 0
 
   # Construct details command line flags
   details_flags = join(" ", [
-    for k, v in var.details : "--detail \"${k}=${v}\""
+    for k, v in var.details : "--detail \"${replace(k, "\"", "\\\"")}=${replace(v, "\"", "\\\"")}\""
   ])
 
   # Construct items command line flags
   items_flags = join(" ", [
-    for item in var.items : "--item \"${item}\""
+    for item in var.items : "--item \"${replace(item, "\"", "\\\"")}\""
   ])
 
   # Optional message flag
-  message_flag = var.message != "" ? "--message \"${var.message}\"" : ""
+  message_flag = var.message != "" ? "--message \"${replace(var.message, "\"", "\\\"")}\"" : ""
 
   # Optional show sensitive flag
   sensitive_flag = var.show_sensitive ? "--show-sensitive" : ""
 
   # Full tfout command argument string
   banner_args = trimspace(join(" ", [
-    "--title \"${var.title}\"",
+    "--title \"${replace(var.title, "\"", "\\\"")}\"",
     "--status \"${var.status}\"",
     local.message_flag,
     local.details_flags,
