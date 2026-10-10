@@ -24,7 +24,7 @@ if ($env:PROCESSOR_ARCHITECTURE -eq "ARM64") {
 }
 
 $BinaryName = "tfout_${Version}_windows_${Arch}.exe"
-$TargetPath = Join-Path $BinDir "tfout.exe"
+$TargetPath = Join-Path $BinDir "tfout_${Version}.exe"
 
 if (-not (Test-Path $TargetPath)) {
     $Url = "${Prefix}/${Version}/${BinaryName}"

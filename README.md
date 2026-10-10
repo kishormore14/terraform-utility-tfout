@@ -23,8 +23,8 @@ Add the module to any Terraform configuration:
 
 ```hcl
 module "dns_banner" {
-  source  = "tfout/banner/aws" # Replace with your published registry source
-  version = "0.1.0"
+  source  = "kishormore14/tfout/utility"
+  version = "0.1.5"
 
   title   = "ROUTE53 HOSTED ZONE CREATED"
   status  = "success"
@@ -42,6 +42,7 @@ module "dns_banner" {
 
   theme  = "default"
   border = "single"
+  color  = "always"
 }
 ```
 
@@ -49,7 +50,7 @@ module "dns_banner" {
 
 ```text
 ┌────────────────────────────────────────────────────────────────────────────┐
-│ [SUCCESS]  ROUTE53 HOSTED ZONE CREATED                                     │
+│  ✔ SUCCESS  ROUTE53 HOSTED ZONE CREATED                                    │
 ├────────────────────────────────────────────────────────────────────────────┤
 │ DNS zone active and name servers ready.                                    │
 ├────────────────────────────────────────────────────────────────────────────┤
@@ -86,7 +87,7 @@ module "dns_banner" {
 | `border` | Box border style: `single`, `double`, `none` | `string` | `"single"` | no |
 | `color` | Color mode: `auto`, `always`, `never` | `string` | `"auto"` | no |
 | `show_sensitive` | Reveal sensitive values in output | `bool` | `false` | no |
-| `tfout_version` | Version of pre-compiled release binary | `string` | `"v0.1.0"` | no |
+| `tfout_version` | Version of pre-compiled release binary | `string` | `"v0.1.4"` | no |
 
 ---
 

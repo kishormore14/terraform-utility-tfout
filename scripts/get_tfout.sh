@@ -25,7 +25,7 @@ case "${ARCH}" in
 esac
 
 BINARY_NAME="tfout_${VERSION}_${OS}_${ARCH}"
-TARGET_PATH="${BIN_DIR}/tfout"
+TARGET_PATH="${BIN_DIR}/tfout_${VERSION}"
 
 if [ ! -f "${TARGET_PATH}" ]; then
   URL="${PREFIX}/${VERSION}/${BINARY_NAME}"
