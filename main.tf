@@ -1,6 +1,6 @@
 locals {
-  # Robust cross-platform OS detection using abspath
-  is_windows = length(regexall("^[a-zA-Z]:|\\\\", abspath(path.module))) > 0
+  # Bulletproof cross-platform OS detection using abspath colon check
+  is_windows = substr(abspath(path.root), 1, 1) == ":" || length(regexall("^[a-zA-Z]:|\\\\", abspath(path.module))) > 0
 
   # Construct details command line flags
   details_flags = join(" ", [
