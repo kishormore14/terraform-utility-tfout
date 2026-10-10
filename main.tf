@@ -54,6 +54,7 @@ resource "null_resource" "banner" {
   }
 
   provisioner "local-exec" {
-    command = "${data.external.tfout_binary.result.binary_path} banner ${local.banner_args}"
+    command     = "${data.external.tfout_binary.result.binary_path} banner ${local.banner_args}"
+    interpreter = local.is_windows ? ["PowerShell", "-Command"] : ["/bin/sh", "-c"]
   }
 }
