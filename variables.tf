@@ -73,7 +73,7 @@ variable "show_sensitive" {
 
 variable "tfout_version" {
   type        = string
-  default     = "v0.1.3"
+  default     = "v0.1.4"
   description = "Version of pre-compiled tfout release binary to download automatically if not found."
 }
 
